@@ -1,0 +1,490 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\zheng\OneDrive - University of Texas Southwestern\Desktop\2026 Spring Courses\5105 Introduction to Programming and Software Packages\HW3\ps3.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}20 Feb 2026, 12:30:59
+
+{com}. do "C:\Users\zheng\OneDrive - University of Texas Southwestern\Desktop\2026 Spring Courses\5105 Introduction to Programming and Software Packages\HW3\ps3.do"
+{txt}
+{com}. cd "C:\Users\zheng\OneDrive - University of Texas Southwestern\Desktop\2026 Spring Courses\5105 Introduction to Programming and Software Packages\HW3\pset3_data"
+{res}C:\Users\zheng\OneDrive - University of Texas Southwestern\Desktop\2026 Spring Courses\5105 Introduction to Programming and Software Packages\HW3\pset3_data
+{txt}
+{com}. 
+. clear all
+{res}{txt}
+{com}. set more off
+{txt}
+{com}. 
+. import delimited "people_full.csv", clear stringcols(_all) varnames(1)
+{res}{txt}(encoding automatically selected: ISO-8859-1)
+{text}(11 vars, 26,065 obs)
+
+{com}. ***Quick sanity checks
+. describe
+
+{txt}Contains data
+ Observations:{res}        26,065                  
+{txt}    Variables:{res}            11                  
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:person_id      }{txt}{bind: str4    }{bind:%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:household_id   }{txt}{bind: str6    }{bind:%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:sex            }{txt}{bind: str6    }{bind:%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:age            }{txt}{bind: str2    }{bind:%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:height_cm      }{txt}{bind: str5    }{bind:%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:weight_kg      }{txt}{bind: str6    }{bind:%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:systolic_bp    }{txt}{bind: str3    }{bind:%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:diastolic_bp   }{txt}{bind: str3    }{bind:%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:location       }{txt}{bind: str9    }{bind:%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:date_str       }{txt}{bind: str10   }{bind:%10s      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:time_str       }{txt}{bind: str8    }{bind:%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{txt}{hline}
+Sorted by: 
+     Note: {res}Dataset has changed since last saved.
+{txt}
+{com}. count
+  {res}26,065
+{txt}
+{com}. list in 1/10
+
+     {txt}{c TLC}{hline 10}{c TT}{hline 10}{c TT}{hline 8}{c TT}{hline 5}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TRC}
+  1. {c |} person~d {c |} househ~d {c |}    sex {c |} age {c |} height~m {c |} weight~g {c |} systol~p {c |} diasto~p {c |}
+     {c |} {res}       1 {txt}{c |} {res}  101937 {txt}{c |} {res}Female {txt}{c |} {res} 28 {txt}{c |} {res}   160.7 {txt}{c |} {res}    66.1 {txt}{c |} {res}     129 {txt}{c |} {res}      83 {txt}{c |}
+     {c LT}{hline 10}{c BT}{hline 10}{c BT}{hline 4}{c TT}{hline 3}{c BT}{hline 5}{c BT}{hline 10}{c BT}{hline 6}{c TT}{hline 3}{c BT}{hline 10}{c BT}{hline 10}{c RT}
+     {c |}         location         {c |}          date_str         {c |}        time_str         {c |}
+     {c |}        {res}   dallas         {txt}{c |}        {res}11/12/2021         {txt}{c |}        {res}13:10:45         {txt}{c |}
+     {c BLC}{hline 26}{c BT}{hline 27}{c BT}{hline 25}{c BRC}
+
+     {c TLC}{hline 10}{c TT}{hline 10}{c TT}{hline 8}{c TT}{hline 5}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TRC}
+  2. {c |} person~d {c |} househ~d {c |}    sex {c |} age {c |} height~m {c |} weight~g {c |} systol~p {c |} diasto~p {c |}
+     {c |} {res}       1 {txt}{c |} {res}  101937 {txt}{c |} {res}Female {txt}{c |} {res} 29 {txt}{c |} {res}   160.1 {txt}{c |} {res}   69.68 {txt}{c |} {res}     127 {txt}{c |} {res}      83 {txt}{c |}
+     {c LT}{hline 10}{c BT}{hline 10}{c BT}{hline 4}{c TT}{hline 3}{c BT}{hline 5}{c BT}{hline 10}{c BT}{hline 6}{c TT}{hline 3}{c BT}{hline 10}{c BT}{hline 10}{c RT}
+     {c |}         location         {c |}          date_str         {c |}        time_str         {c |}
+     {c |}        {res}   dallas         {txt}{c |}        {res}05/21/2022         {txt}{c |}        {res}12:09:01         {txt}{c |}
+     {c BLC}{hline 26}{c BT}{hline 27}{c BT}{hline 25}{c BRC}
+
+     {c TLC}{hline 10}{c TT}{hline 10}{c TT}{hline 8}{c TT}{hline 5}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TRC}
+  3. {c |} person~d {c |} househ~d {c |}    sex {c |} age {c |} height~m {c |} weight~g {c |} systol~p {c |} diasto~p {c |}
+     {c |} {res}       1 {txt}{c |} {res}  101937 {txt}{c |} {res}Female {txt}{c |} {res} 30 {txt}{c |} {res}   160.7 {txt}{c |} {res}   65.02 {txt}{c |} {res}     125 {txt}{c |} {res}      88 {txt}{c |}
+     {c LT}{hline 10}{c BT}{hline 10}{c BT}{hline 4}{c TT}{hline 3}{c BT}{hline 5}{c BT}{hline 10}{c BT}{hline 6}{c TT}{hline 3}{c BT}{hline 10}{c BT}{hline 10}{c RT}
+     {c |}         location         {c |}          date_str         {c |}        time_str         {c |}
+     {c |}        {res}   dallas         {txt}{c |}        {res}06/08/2023         {txt}{c |}        {res}11:56:23         {txt}{c |}
+     {c BLC}{hline 26}{c BT}{hline 27}{c BT}{hline 25}{c BRC}
+
+     {c TLC}{hline 10}{c TT}{hline 10}{c TT}{hline 8}{c TT}{hline 5}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TRC}
+  4. {c |} person~d {c |} househ~d {c |}    sex {c |} age {c |} height~m {c |} weight~g {c |} systol~p {c |} diasto~p {c |}
+     {c |} {res}       1 {txt}{c |} {res}  101937 {txt}{c |} {res}Female {txt}{c |} {res} 31 {txt}{c |} {res}   161.5 {txt}{c |} {res}   66.43 {txt}{c |} {res}     131 {txt}{c |} {res}      79 {txt}{c |}
+     {c LT}{hline 10}{c BT}{hline 10}{c BT}{hline 4}{c TT}{hline 3}{c BT}{hline 5}{c BT}{hline 10}{c BT}{hline 6}{c TT}{hline 3}{c BT}{hline 10}{c BT}{hline 10}{c RT}
+     {c |}         location         {c |}          date_str         {c |}        time_str         {c |}
+     {c |}        {res}   dallas         {txt}{c |}        {res}02/22/2024         {txt}{c |}        {res}12:01:24         {txt}{c |}
+     {c BLC}{hline 26}{c BT}{hline 27}{c BT}{hline 25}{c BRC}
+
+     {c TLC}{hline 10}{c TT}{hline 10}{c TT}{hline 8}{c TT}{hline 5}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TRC}
+  5. {c |} person~d {c |} househ~d {c |}    sex {c |} age {c |} height~m {c |} weight~g {c |} systol~p {c |} diasto~p {c |}
+     {c |} {res}       1 {txt}{c |} {res}  101937 {txt}{c |} {res}Female {txt}{c |} {res} 32 {txt}{c |} {res}   159.7 {txt}{c |} {res}   69.89 {txt}{c |} {res}     120 {txt}{c |} {res}      81 {txt}{c |}
+     {c LT}{hline 10}{c BT}{hline 10}{c BT}{hline 4}{c TT}{hline 3}{c BT}{hline 5}{c BT}{hline 10}{c BT}{hline 6}{c TT}{hline 3}{c BT}{hline 10}{c BT}{hline 10}{c RT}
+     {c |}         location         {c |}          date_str         {c |}        time_str         {c |}
+     {c |}        {res}   dallas         {txt}{c |}        {res}09/23/2025         {txt}{c |}        {res}09:50:49         {txt}{c |}
+     {c BLC}{hline 26}{c BT}{hline 27}{c BT}{hline 25}{c BRC}
+
+     {c TLC}{hline 10}{c TT}{hline 10}{c TT}{hline 8}{c TT}{hline 5}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TRC}
+  6. {c |} person~d {c |} househ~d {c |}    sex {c |} age {c |} height~m {c |} weight~g {c |} systol~p {c |} diasto~p {c |}
+     {c |} {res}       2 {txt}{c |} {res}  100264 {txt}{c |} {res}  Male {txt}{c |} {res} 34 {txt}{c |} {res}   143.9 {txt}{c |} {res}   75.17 {txt}{c |} {res}     115 {txt}{c |} {res}      79 {txt}{c |}
+     {c LT}{hline 10}{c BT}{hline 10}{c BT}{hline 4}{c TT}{hline 3}{c BT}{hline 5}{c BT}{hline 10}{c BT}{hline 6}{c TT}{hline 3}{c BT}{hline 10}{c BT}{hline 10}{c RT}
+     {c |}         location         {c |}          date_str         {c |}        time_str         {c |}
+     {c |}        {res} houston          {txt}{c |}        {res}04/01/2021         {txt}{c |}        {res}09:20:26         {txt}{c |}
+     {c BLC}{hline 26}{c BT}{hline 27}{c BT}{hline 25}{c BRC}
+
+     {c TLC}{hline 10}{c TT}{hline 10}{c TT}{hline 8}{c TT}{hline 5}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TRC}
+  7. {c |} person~d {c |} househ~d {c |}    sex {c |} age {c |} height~m {c |} weight~g {c |} systol~p {c |} diasto~p {c |}
+     {c |} {res}       2 {txt}{c |} {res}  100264 {txt}{c |} {res}  Male {txt}{c |} {res} 35 {txt}{c |} {res}   143.6 {txt}{c |} {res}   76.65 {txt}{c |} {res}     133 {txt}{c |} {res}      82 {txt}{c |}
+     {c LT}{hline 10}{c BT}{hline 10}{c BT}{hline 4}{c TT}{hline 3}{c BT}{hline 5}{c BT}{hline 10}{c BT}{hline 6}{c TT}{hline 3}{c BT}{hline 10}{c BT}{hline 10}{c RT}
+     {c |}         location         {c |}          date_str         {c |}        time_str         {c |}
+     {c |}        {res} houston          {txt}{c |}        {res}08/19/2022         {txt}{c |}        {res}16:06:29         {txt}{c |}
+     {c BLC}{hline 26}{c BT}{hline 27}{c BT}{hline 25}{c BRC}
+
+     {c TLC}{hline 10}{c TT}{hline 10}{c TT}{hline 8}{c TT}{hline 5}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TRC}
+  8. {c |} person~d {c |} househ~d {c |}    sex {c |} age {c |} height~m {c |} weight~g {c |} systol~p {c |} diasto~p {c |}
+     {c |} {res}       2 {txt}{c |} {res}  100264 {txt}{c |} {res}  Male {txt}{c |} {res} 36 {txt}{c |} {res}   144.2 {txt}{c |} {res}      NA {txt}{c |} {res}     124 {txt}{c |} {res}      79 {txt}{c |}
+     {c LT}{hline 10}{c BT}{hline 10}{c BT}{hline 4}{c TT}{hline 3}{c BT}{hline 5}{c BT}{hline 10}{c BT}{hline 6}{c TT}{hline 3}{c BT}{hline 10}{c BT}{hline 10}{c RT}
+     {c |}         location         {c |}          date_str         {c |}        time_str         {c |}
+     {c |}        {res} houston          {txt}{c |}        {res}08/17/2023         {txt}{c |}        {res}08:50:43         {txt}{c |}
+     {c BLC}{hline 26}{c BT}{hline 27}{c BT}{hline 25}{c BRC}
+
+     {c TLC}{hline 10}{c TT}{hline 10}{c TT}{hline 8}{c TT}{hline 5}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TRC}
+  9. {c |} person~d {c |} househ~d {c |}    sex {c |} age {c |} height~m {c |} weight~g {c |} systol~p {c |} diasto~p {c |}
+     {c |} {res}       2 {txt}{c |} {res}  100264 {txt}{c |} {res}  Male {txt}{c |} {res} 37 {txt}{c |} {res}   144.5 {txt}{c |} {res}   78.92 {txt}{c |} {res}     124 {txt}{c |} {res}      81 {txt}{c |}
+     {c LT}{hline 10}{c BT}{hline 10}{c BT}{hline 4}{c TT}{hline 3}{c BT}{hline 5}{c BT}{hline 10}{c BT}{hline 6}{c TT}{hline 3}{c BT}{hline 10}{c BT}{hline 10}{c RT}
+     {c |}         location         {c |}          date_str         {c |}        time_str         {c |}
+     {c |}        {res} houston          {txt}{c |}        {res}03/20/2024         {txt}{c |}        {res}16:29:34         {txt}{c |}
+     {c BLC}{hline 26}{c BT}{hline 27}{c BT}{hline 25}{c BRC}
+
+     {c TLC}{hline 10}{c TT}{hline 10}{c TT}{hline 8}{c TT}{hline 5}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TT}{hline 10}{c TRC}
+ 10. {c |} person~d {c |} househ~d {c |}    sex {c |} age {c |} height~m {c |} weight~g {c |} systol~p {c |} diasto~p {c |}
+     {c |} {res}       2 {txt}{c |} {res}  100264 {txt}{c |} {res}  Male {txt}{c |} {res} 38 {txt}{c |} {res}   144.1 {txt}{c |} {res}   72.05 {txt}{c |} {res}     124 {txt}{c |} {res}      89 {txt}{c |}
+     {c LT}{hline 10}{c BT}{hline 10}{c BT}{hline 4}{c TT}{hline 3}{c BT}{hline 5}{c BT}{hline 10}{c BT}{hline 6}{c TT}{hline 3}{c BT}{hline 10}{c BT}{hline 10}{c RT}
+     {c |}         location         {c |}          date_str         {c |}        time_str         {c |}
+     {c |}        {res} houston          {txt}{c |}        {res}10/06/2025         {txt}{c |}        {res}18:03:53         {txt}{c |}
+     {c BLC}{hline 26}{c BT}{hline 27}{c BT}{hline 25}{c BRC}
+
+{com}. misstable summarize
+{txt}(variables nonmissing or string)
+
+{com}. * Trim leading/trailing spaces
+. replace sex      = strtrim(sex)
+{txt}(0 real changes made)
+
+{com}. replace location = strtrim(location)
+{txt}(8,630 real changes made)
+
+{com}. * Collapse internal multiple spaces
+. replace sex      = itrim(sex)
+{txt}(0 real changes made)
+
+{com}. replace location = itrim(location)
+{txt}(0 real changes made)
+
+{com}. * Normalize case
+. replace sex      = lower(sex)
+{txt}(26,065 real changes made)
+
+{com}. replace location = lower(location)
+{txt}(17,520 real changes made)
+
+{com}. ***Standardize sex values
+. replace sex = "female" if sex == "f" | sex == "female"
+{txt}(0 real changes made)
+
+{com}. replace sex = "male"   if sex == "m" | sex == "male"
+{txt}(0 real changes made)
+
+{com}. * Handle missing / invalid entries
+. replace sex = "" if inlist(sex, ".", "na", "n/a", "unknown", "unk")
+{txt}(0 real changes made)
+
+{com}. tab sex, missing
+
+        {txt}sex {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+     female {c |}{res}     12,715       48.78       48.78
+{txt}       male {c |}{res}     13,350       51.22      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}     26,065      100.00
+{txt}
+{com}. ***Standardize location
+. * Remove punctuation
+. replace location = subinstr(location, ".", "", .)
+{txt}(0 real changes made)
+
+{com}. replace location = subinstr(location, ",", "", .)
+{txt}(0 real changes made)
+
+{com}. 
+. * Standardize known city variants (edit if more appear)
+. replace location = "dallas" if inlist(location, "dal", "dallas tx", "dallas texas")
+{txt}(0 real changes made)
+
+{com}. 
+. * Handle missing / invalid entries
+. replace location = "" if inlist(location, ".", "na", "n/a", "unknown", "unk")
+{txt}(0 real changes made)
+
+{com}. tab location, missing
+
+   {txt}location {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+     austin {c |}{res}      8,895       34.13       34.13
+{txt}     dallas {c |}{res}     11,585       44.45       78.57
+{txt}    houston {c |}{res}      5,585       21.43      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}     26,065      100.00
+{txt}
+{com}. 
+. *****Convert the following columns from strings to numeric and handle "NA":person_id household_id age height_cm weight_kg systolic_bp diastolic_bp
+. * Replace "NA" (and common variants) with empty string
+. foreach v in person_id household_id age height_cm weight_kg systolic_bp diastolic_bp {c -(}
+{txt}  2{com}.     replace `v' = "" if lower(`v') == "na"
+{txt}  3{com}.     replace `v' = "" if lower(`v') == "n/a"
+{txt}  4{com}.     replace `v' = "" if `v' == "."
+{txt}  5{com}. {c )-}
+{txt}(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(781 real changes made)
+(0 real changes made)
+(0 real changes made)
+(1,303 real changes made)
+(0 real changes made)
+(0 real changes made)
+(2,085 real changes made)
+(0 real changes made)
+(0 real changes made)
+(3,127 real changes made)
+(0 real changes made)
+(0 real changes made)
+(3,127 real changes made)
+(0 real changes made)
+(0 real changes made)
+
+{com}. destring person_id household_id, replace
+{txt}person_id: all characters numeric; {res}replaced {txt}as {res}int
+{txt}household_id: all characters numeric; {res}replaced {txt}as {res}long
+{txt}
+{com}. destring age height_cm weight_kg systolic_bp diastolic_bp, replace
+{txt}age: all characters numeric; {res}replaced {txt}as {res}byte
+{txt}(781 missing values generated)
+{res}{txt}height_cm: all characters numeric; {res}replaced {txt}as {res}double
+{txt}(1303 missing values generated)
+{res}{txt}weight_kg: all characters numeric; {res}replaced {txt}as {res}double
+{txt}(2085 missing values generated)
+{res}{txt}systolic_bp: all characters numeric; {res}replaced {txt}as {res}int
+{txt}(3127 missing values generated)
+{res}{txt}diastolic_bp: all characters numeric; {res}replaced {txt}as {res}int
+{txt}(3127 missing values generated)
+{res}{txt}
+{com}. describe person_id household_id age height_cm weight_kg systolic_bp diastolic_bp
+
+{txt}Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:person_id      }{txt}{bind: int     }{bind:%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:household_id   }{txt}{bind: long    }{bind:%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:height_cm      }{txt}{bind: double  }{bind:%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:weight_kg      }{txt}{bind: double  }{bind:%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:systolic_bp    }{txt}{bind: int     }{bind:%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:diastolic_bp   }{txt}{bind: int     }{bind:%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{txt}
+{com}. misstable summarize person_id household_id age height_cm weight_kg systolic_bp diastolic_bp
+{txt}{col 64}Obs<.
+{col 49}{c TLC}{hline 30}
+{col 16}{c |}{col 49}{c |} Unique
+{col 7}Variable {c |}{col 22}Obs=.{col 32}Obs>.{col 42}Obs<.{col 49}{c |} values{col 65}Min{col 77}Max
+  {hline 13}{c +}{hline 32}{c +}{hline 30}
+           age {c |}{res}       781{txt}{space 10}{res}    25,284{txt}  {c |}     90          1          90
+     height_cm {c |}{res}     1,303{txt}{space 10}{res}    24,762{txt}  {c |}   >500      120.1       214.2
+     weight_kg {c |}{res}     2,085{txt}{space 10}{res}    23,980{txt}  {c |}   >500       9.83      146.08
+   systolic_bp {c |}{res}     3,127{txt}{space 10}{res}    22,938{txt}  {c |}    123         50         184
+  diastolic_bp {c |}{res}     3,127{txt}{space 10}{res}    22,938{txt}  {c |}     78         37         119
+  {hline 13}{c BT}{hline 32}{c BT}{hline 30}
+
+{com}. summarize age height_cm weight_kg systolic_bp diastolic_bp
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}age {c |}{res}     25,284    44.94843    24.96167          1         90
+{txt}{space 3}height_cm {c |}{res}     24,762    168.1488    12.11117      120.1      214.2
+{txt}{space 3}weight_kg {c |}{res}     23,980    70.41884    15.30541       9.83     146.08
+{txt}{space 1}systolic_bp {c |}{res}     22,938     119.959    16.29481         50        184
+{txt}diastolic_bp {c |}{res}     22,938    79.84205    10.77212         37        119
+{txt}
+{com}. 
+. ********Convert date/time fields
+. * Clean
+. replace date_str = strtrim(date_str)
+{txt}(0 real changes made)
+
+{com}. replace date_str = "" if lower(date_str) == "na" | lower(date_str) == "n/a" | date_str == "."
+{txt}(0 real changes made)
+
+{com}. 
+. * Convert string date (MM/DD/YYYY) -> Stata daily date
+. gen visit_date = daily(date_str, "MDY")
+{txt}
+{com}. format visit_date %td
+{txt}
+{com}. 
+. * Check failures (non-missing date_str that didn't convert)
+. count if date_str != "" & missing(visit_date)
+  {res}0
+{txt}
+{com}. list date_str if date_str != "" & missing(visit_date) in 1/20
+{txt}
+{com}. 
+. * Clean
+. replace time_str = strtrim(time_str)
+{txt}(0 real changes made)
+
+{com}. replace time_str = "" if lower(time_str) == "na" | lower(time_str) == "n/a" | time_str == "."
+{txt}(0 real changes made)
+
+{com}. 
+. * Convert string time -> Stata datetime (ms)
+. gen double visit_time = clock(time_str, "hms")
+{txt}
+{com}. format visit_time %tcHH:MM:SS
+{txt}
+{com}. 
+. * Check failures
+. count if time_str != "" & missing(visit_time)
+  {res}0
+{txt}
+{com}. list time_str if time_str != "" & missing(visit_time) in 1/20
+{txt}
+{com}. gen people_year = year(visit_date)
+{txt}
+{com}. tab people_year, missing
+
+{txt}people_year {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+       2021 {c |}{res}      5,213       20.00       20.00
+{txt}       2022 {c |}{res}      5,213       20.00       40.00
+{txt}       2023 {c |}{res}      5,213       20.00       60.00
+{txt}       2024 {c |}{res}      5,213       20.00       80.00
+{txt}       2025 {c |}{res}      5,213       20.00      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}     26,065      100.00
+{txt}
+{com}. summarize visit_date visit_time people_year
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 2}visit_date {c |}{res}     26,065    23193.92     527.814      22281      24106
+{txt}{space 2}visit_time {c |}{res}     26,065    4.87e+07    1.15e+07   2.88e+07   6.84e+07
+{txt}{space 1}people_year {c |}{res}     26,065        2023    1.414241       2021       2025
+{txt}
+{com}. list person_id date_str visit_date time_str visit_time people_year in 1/10
+{txt}
+     {c TLC}{hline 10}{c -}{hline 12}{c -}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+     {c |} {res}person~d     date_str   visit_d~e   time_str   visit~me   people~r {txt}{c |}
+     {c LT}{hline 10}{c -}{hline 12}{c -}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+  1. {c |} {res}       1   11/12/2021   12nov2021   13:10:45   13:10:45       2021 {txt}{c |}
+  2. {c |} {res}       1   05/21/2022   21may2022   12:09:01   12:09:01       2022 {txt}{c |}
+  3. {c |} {res}       1   06/08/2023   08jun2023   11:56:23   11:56:23       2023 {txt}{c |}
+  4. {c |} {res}       1   02/22/2024   22feb2024   12:01:24   12:01:24       2024 {txt}{c |}
+  5. {c |} {res}       1   09/23/2025   23sep2025   09:50:49   09:50:49       2025 {txt}{c |}
+     {c LT}{hline 10}{c -}{hline 12}{c -}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+  6. {c |} {res}       2   04/01/2021   01apr2021   09:20:26   09:20:26       2021 {txt}{c |}
+  7. {c |} {res}       2   08/19/2022   19aug2022   16:06:29   16:06:29       2022 {txt}{c |}
+  8. {c |} {res}       2   08/17/2023   17aug2023   08:50:43   08:50:43       2023 {txt}{c |}
+  9. {c |} {res}       2   03/20/2024   20mar2024   16:29:34   16:29:34       2024 {txt}{c |}
+ 10. {c |} {res}       2   10/06/2025   06oct2025   18:03:53   18:03:53       2025 {txt}{c |}
+     {c BLC}{hline 10}{c -}{hline 12}{c -}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{com}. 
+. *******Run QA checks
+. * 1) no missing person_id
+. assert !missing(person_id)
+{txt}
+{com}. * 2) unique key: person_id people_year
+. isid person_id people_year
+{txt}
+{com}. * 3) each non-missing person_id has 5 observations
+. bysort person_id: assert _N == 5
+{txt}
+{com}. 
+. * Encode sex and location into numeric categorical variables
+. encode sex, gen(sex_id)
+{txt}
+{com}. encode location, gen(location_id)
+{txt}
+{com}. 
+. bysort household_id (person_id people_year): gen hh_row = _n
+{txt}
+{com}. list household_id person_id people_year hh_row in 1/20, sepby(household_id)
+{txt}
+     {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 8}{c TRC}
+     {c |} {res}househ~d   person~d   people~r   hh_row {txt}{c |}
+     {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 8}{c RT}
+  1. {c |} {res}  100001       1272       2021        1 {txt}{c |}
+  2. {c |} {res}  100001       1272       2022        2 {txt}{c |}
+  3. {c |} {res}  100001       1272       2023        3 {txt}{c |}
+  4. {c |} {res}  100001       1272       2024        4 {txt}{c |}
+  5. {c |} {res}  100001       1272       2025        5 {txt}{c |}
+  6. {c |} {res}  100001       4227       2021        6 {txt}{c |}
+  7. {c |} {res}  100001       4227       2022        7 {txt}{c |}
+  8. {c |} {res}  100001       4227       2023        8 {txt}{c |}
+  9. {c |} {res}  100001       4227       2024        9 {txt}{c |}
+ 10. {c |} {res}  100001       4227       2025       10 {txt}{c |}
+     {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 8}{c RT}
+ 11. {c |} {res}  100002       1838       2021        1 {txt}{c |}
+ 12. {c |} {res}  100002       1838       2022        2 {txt}{c |}
+ 13. {c |} {res}  100002       1838       2023        3 {txt}{c |}
+ 14. {c |} {res}  100002       1838       2024        4 {txt}{c |}
+ 15. {c |} {res}  100002       1838       2025        5 {txt}{c |}
+     {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 8}{c RT}
+ 16. {c |} {res}  100003       1819       2021        1 {txt}{c |}
+ 17. {c |} {res}  100003       1819       2022        2 {txt}{c |}
+ 18. {c |} {res}  100003       1819       2023        3 {txt}{c |}
+ 19. {c |} {res}  100003       1819       2024        4 {txt}{c |}
+ 20. {c |} {res}  100003       1819       2025        5 {txt}{c |}
+     {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 8}{c BRC}
+
+{com}. 
+. bysort household_id: egen hh_mean_age = mean(age)
+{txt}
+{com}. summarize hh_mean_age
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 1}hh_mean_age {c |}{res}     26,065    44.92793    17.62918          3         88
+{txt}
+{com}. list household_id age hh_mean_age in 1/20, sepby(household_id)
+{txt}
+     {c TLC}{hline 10}{c -}{hline 5}{c -}{hline 10}{c TRC}
+     {c |} {res}househ~d   age   hh_mea~e {txt}{c |}
+     {c LT}{hline 10}{c -}{hline 5}{c -}{hline 10}{c RT}
+  1. {c |} {res}  100001    11         44 {txt}{c |}
+  2. {c |} {res}  100001    12         44 {txt}{c |}
+  3. {c |} {res}  100001    13         44 {txt}{c |}
+  4. {c |} {res}  100001    14         44 {txt}{c |}
+  5. {c |} {res}  100001    15         44 {txt}{c |}
+  6. {c |} {res}  100001    73         44 {txt}{c |}
+  7. {c |} {res}  100001    74         44 {txt}{c |}
+  8. {c |} {res}  100001    75         44 {txt}{c |}
+  9. {c |} {res}  100001    76         44 {txt}{c |}
+ 10. {c |} {res}  100001    77         44 {txt}{c |}
+     {c LT}{hline 10}{c -}{hline 5}{c -}{hline 10}{c RT}
+ 11. {c |} {res}  100002     7          9 {txt}{c |}
+ 12. {c |} {res}  100002     8          9 {txt}{c |}
+ 13. {c |} {res}  100002     9          9 {txt}{c |}
+ 14. {c |} {res}  100002    10          9 {txt}{c |}
+ 15. {c |} {res}  100002    11          9 {txt}{c |}
+     {c LT}{hline 10}{c -}{hline 5}{c -}{hline 10}{c RT}
+ 16. {c |} {res}  100003    83   65.35714 {txt}{c |}
+ 17. {c |} {res}  100003    84   65.35714 {txt}{c |}
+ 18. {c |} {res}  100003    85   65.35714 {txt}{c |}
+ 19. {c |} {res}  100003    86   65.35714 {txt}{c |}
+ 20. {c |} {res}  100003    87   65.35714 {txt}{c |}
+     {c BLC}{hline 10}{c -}{hline 5}{c -}{hline 10}{c BRC}
+
+{com}. 
+. mkdir processed_data
+{err}could not create directory processed_data
+{txt}{search r(693), local:r(693);}
+
+end of do-file
+
+{search r(693), local:r(693);}
+
+{com}. do "C:\Users\zheng\AppData\Local\Temp\STD4698_000000.tmp"
+{txt}
+{com}. 
+. capture mkdir processed_data
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\zheng\AppData\Local\Temp\STD4698_000001.tmp"
+{txt}
+{com}. 
+. export delimited using "processed_data/ps3_regions_clean.csv", replace
+{res}{txt}file {bf:processed_data/ps3_regions_clean.csv} saved
+
+{com}. 
+{txt}end of do-file
+
+{com}. save "C:\Users\zheng\OneDrive - University of Texas Southwestern\Desktop\2026 Spring Courses\5105 Introduction to Programming and Software Packages\HW3\ps3.dta"
+{txt}{p 0 4 2}
+file {bf}
+C:\Users\zheng\OneDrive - University of Texas Southwestern\Desktop\2026 Spring Courses\5105 Introduction to Programming and Software Packages\HW3\ps3.dta{rm}
+saved
+{p_end}
+
+{com}. exit
