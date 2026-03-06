@@ -162,4 +162,5 @@ save processed_data/ps5_analysis_with_predictions.dta, replace
 *--------------------------------------------------*
 * 10. Finalize
 *--------------------------------------------------*
+
 log close
